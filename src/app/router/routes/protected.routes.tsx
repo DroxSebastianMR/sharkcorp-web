@@ -1,12 +1,12 @@
 import type { RouteObject } from 'react-router-dom';
 
-import { PATHS } from '@/app/router/constants/paths';
-
 import { ProtectedRoute } from '@/app/router/guards/protected-route';
 
 import { DashboardLayout } from '@/layouts/dashboard/dashboard-layout';
 
-import { DashboardPage } from '@/features/dashboard/pages/index';
+import { DashboardPage } from '@/features/dashboard/pages';
+
+import { PATHS } from '@/app/router/constants/paths';
 
 export const protectedRoutes: RouteObject[] = [
   {
