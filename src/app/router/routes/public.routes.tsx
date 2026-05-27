@@ -1,8 +1,6 @@
 import type { RouteObject } from 'react-router-dom';
 
-import { Navigate } from 'react-router-dom';
-
-import { PATHS } from '@/app/router/constants/paths';
+import { PublicRoute } from '@/app/router/guards/public-route';
 
 import { AuthLayout } from '@/layouts/auth/auth-layout';
 
@@ -11,28 +9,25 @@ import {
   RecoverPage,
 } from '@/features/auth/pages';
 
+import { PATHS } from '@/app/router/constants/paths';
+
 export const publicRoutes: RouteObject[] = [
   {
-    path: PATHS.ROOT,
-    element: (
-      <Navigate
-        to={PATHS.AUTH.LOGIN}
-        replace
-      />
-    ),
-  },
-
-  {
-    element: <AuthLayout />,
+    element: <PublicRoute />,
     children: [
       {
-        path: PATHS.AUTH.LOGIN,
-        element: <LoginPage />,
-      },
+        element: <AuthLayout />,
+        children: [
+          {
+            path: PATHS.AUTH.LOGIN,
+            element: <LoginPage />,
+          },
 
-      {
-        path: PATHS.AUTH.RECOVER,
-        element: <RecoverPage />,
+          {
+            path: PATHS.AUTH.RECOVER,
+            element: <RecoverPage />,
+          },
+        ],
       },
     ],
   },
