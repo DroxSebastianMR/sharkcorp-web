@@ -1,0 +1,281 @@
+src/
+│
+├── app/                                         # Núcleo/configuración global
+│   │
+│   ├── app.tsx                                  # Composición raíz de la aplicación
+│   │
+│   ├── config/
+│   │   ├── env.ts
+│   │   ├── app.config.ts
+│   │   └── navigation.config.ts
+│   │
+│   ├── providers/                               # Providers globales React
+│   │   ├── app-providers.tsx
+│   │   ├── auth-provider.tsx
+│   │   ├── query-provider.tsx
+│   │   ├── theme-provider.tsx
+│   │   └── index.ts
+│   │
+│   ├── router/                                  # Sistema central de rutas
+│   │   │
+│   │   ├── app-router.tsx
+│   │   ├── index.ts
+│   │   │
+│   │   ├── constants/
+│   │   │   └── paths.ts
+│   │   │
+│   │   ├── guards/
+│   │   │   ├── protected-route.tsx
+│   │   │   ├── public-route.tsx
+│   │   │   └── permission-route.tsx
+│   │   │
+│   │   └── routes/
+│   │       ├── public.routes.tsx
+│   │       ├── protected.routes.tsx
+│   │       ├── root.routes.tsx
+│   │       └── index.ts
+│   │
+│   ├── store/
+│   │   ├── app.store.ts
+│   │   └── index.ts
+│   │
+│   └── main.tsx
+│
+├── assets/                                      # Recursos estáticos
+│   ├── fonts/
+│   ├── icons/
+│   ├── illustrations/
+│   ├── images/
+│   ├── logos/
+│   └── videos/
+│
+├── components/                                  # Componentes reutilizables GLOBALMENTE
+│   │
+│   ├── ui/                                      # shadcn/ui
+│   │   ├── button.tsx
+│   │   ├── input.tsx
+│   │   ├── card.tsx
+│   │   ├── dialog.tsx
+│   │   ├── table.tsx
+│   │   ├── form.tsx
+│   │   └── ...
+│   │
+│   ├── custom/                                  # Componentes custom reutilizables
+│   │   ├── app-sidebar/
+│   │   ├── confirm-dialog/
+│   │   ├── data-table/
+│   │   ├── empty-state/
+│   │   ├── loading-screen/
+│   │   ├── navbar/
+│   │   ├── page-header/
+│   │   ├── search-input/
+│   │   └── status-badge/
+│   │
+│   └── shared/                                  # Componentes compartidos/wrappers
+│       ├── permissions/
+│       ├── protected/
+│       ├── suspense/
+│       └── transitions/
+│
+├── features/                                    # MÓDULOS DEL NEGOCIO
+│   │
+│   ├── auth/
+│   │   │
+│   │   ├── components/
+│   │   │   ├── auth-banner.tsx
+│   │   │   ├── auth-brand.tsx
+│   │   │   ├── auth-card.tsx
+│   │   │   ├── auth-header.tsx
+│   │   │   ├── auth-hero.tsx
+│   │   │   └── index.ts
+│   │   │
+│   │   ├── forms/
+│   │   │   ├── login-form.tsx
+│   │   │   ├── recover-form.tsx
+│   │   │   ├── reset-password-form.tsx
+│   │   │   └── index.ts
+│   │   │
+│   │   ├── hooks/
+│   │   │   ├── use-login.ts
+│   │   │   ├── use-logout.ts
+│   │   │   ├── use-recover-password.ts
+│   │   │   ├── use-session.ts
+│   │   │   └── index.ts
+│   │   │
+│   │   ├── pages/
+│   │   │   ├── login-page.tsx
+│   │   │   ├── recover-page.tsx
+│   │   │   ├── reset-password-page.tsx
+│   │   │   ├── unauthorized-page.tsx
+│   │   │   └── index.ts
+│   │   │
+│   │   ├── schemas/
+│   │   │   ├── login.schema.ts
+│   │   │   ├── recover.schema.ts
+│   │   │   └── reset-password.schema.ts
+│   │   │
+│   │   ├── services/
+│   │   │   └── auth.service.ts
+│   │   │
+│   │   ├── store/
+│   │   │   └── auth.store.ts
+│   │   │
+│   │   ├── types/
+│   │   │   ├── auth-api.types.ts
+│   │   │   ├── auth.types.ts
+│   │   │   ├── session.types.ts
+│   │   │   └── index.ts
+│   │   │
+│   │   ├── utils/
+│   │   │   ├── auth.constants.ts
+│   │   │   ├── auth.mapper.ts
+│   │   │   ├── auth.storage.ts
+│   │   │   └── index.ts
+│   │   │
+│   │   ├── routes.tsx
+│   │   └── index.ts
+│   │
+│   ├── dashboard/
+│   │   │
+│   │   ├── components/
+│   │   ├── hooks/
+│   │   ├── pages/
+│   │   │   ├── dashboard-page.tsx
+│   │   │   └── index.ts
+│   │   ├── services/
+│   │   ├── store/
+│   │   ├── types/
+│   │   ├── utils/
+│   │   ├── routes.tsx
+│   │   └── index.ts
+│   │
+│   ├── employees/                               # Gestión de empleados
+│   │   │
+│   │   ├── components/
+│   │   │   ├── employee-actions.tsx
+│   │   │   ├── employee-avatar.tsx
+│   │   │   ├── employee-card.tsx
+│   │   │   ├── employee-table.tsx
+│   │   │   └── index.ts
+│   │   │
+│   │   ├── forms/
+│   │   │   ├── employee-filter-form.tsx
+│   │   │   ├── employee-form.tsx
+│   │   │   └── index.ts
+│   │   │
+│   │   ├── hooks/
+│   │   │   ├── use-create-employee.ts
+│   │   │   ├── use-delete-employee.ts
+│   │   │   ├── use-employees.ts
+│   │   │   ├── use-update-employee.ts
+│   │   │   └── index.ts
+│   │   │
+│   │   ├── pages/
+│   │   │   ├── create-employee-page.tsx
+│   │   │   ├── employee-detail-page.tsx
+│   │   │   ├── employees-page.tsx
+│   │   │   ├── update-employee-page.tsx
+│   │   │   └── index.ts
+│   │   │
+│   │   ├── schemas/
+│   │   │   └── employee.schema.ts
+│   │   │
+│   │   ├── services/
+│   │   │   └── employee.service.ts
+│   │   │
+│   │   ├── store/
+│   │   │   └── employees.store.ts
+│   │   │
+│   │   ├── types/
+│   │   │   ├── employee.types.ts
+│   │   │   └── index.ts
+│   │   │
+│   │   ├── utils/
+│   │   │   ├── employee.constants.ts
+│   │   │   ├── employee.mapper.ts
+│   │   │   └── index.ts
+│   │   │
+│   │   ├── routes.tsx
+│   │   └── index.ts
+│   │
+│   ├── administration/
+│   ├── attendance/
+│   ├── notifications/
+│   ├── payroll/
+│   ├── projects/
+│   ├── reports/
+│   └── settings/
+│
+├── hooks/                                       # Hooks globales reutilizables
+│   ├── use-debounce.ts
+│   ├── use-local-storage.ts
+│   ├── use-mobile.ts
+│   ├── use-pagination.ts
+│   └── use-theme.ts
+│
+├── layouts/                                     # Layouts globales
+│   │
+│   ├── auth/
+│   │   └── auth-layout.tsx
+│   │
+│   ├── dashboard/
+│   │   ├── dashboard-header.tsx
+│   │   ├── dashboard-layout.tsx
+│   │   ├── dashboard-navbar.tsx
+│   │   └── dashboard-sidebar.tsx
+│   │
+│   └── minimal/
+│       └── minimal-layout.tsx
+│
+├── services/                                    # Infraestructura GLOBAL
+│   │
+│   ├── api/
+│   │   ├── api.types.ts
+│   │   ├── client.ts
+│   │   ├── endpoints.ts
+│   │   └── interceptors.ts
+│   │
+│   ├── notifications/
+│   │   └── notification.service.ts
+│   │
+│   ├── permissions/
+│   │   └── permission.service.ts
+│   │
+│   ├── realtime/
+│   │   ├── socket.service.ts
+│   │   └── websocket.service.ts
+│   │
+│   └── storage/
+│       ├── cookies.service.ts
+│       ├── local-storage.service.ts
+│       └── session-storage.service.ts
+│
+├── lib/                                         # Helpers técnicos/globales
+│   ├── cn.ts
+│   ├── constants.ts
+│   ├── dates.ts
+│   ├── formatters.ts
+│   ├── logger.ts
+│   ├── query-client.ts
+│   ├── table.ts
+│   ├── utils.ts
+│   └── validators.ts
+│
+├── styles/
+│   ├── globals.css
+│   ├── tailwind.css
+│   └── themes.css
+│
+├── types/
+│   ├── api.types.ts
+│   ├── common.types.ts
+│   └── global.types.ts
+│
+├── utils/
+│   ├── errors.ts
+│   ├── guards.ts
+│   ├── permissions.ts
+│   ├── routes.ts
+│   └── storage.ts
+│
+└── vite-env.d.ts
