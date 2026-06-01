@@ -1,24 +1,21 @@
-import { Link } from 'react-router-dom';
-import { Mail, ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Mail } from "lucide-react";
+import { Link } from "react-router-dom";
 
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 
-import { AuthInput } from '@/features/auth/components/auth-input';
+import { AuthInput } from "@/features/auth/components/auth-input";
 
-import { PATHS } from '@/app/router/constants/paths';
+import { PATHS } from "@/app/router/constants/paths";
 
 export const RecoveryForm = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    console.log('Enviar recuperación');
+    console.log("Enviar recuperación");
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="space-y-6"
-    >
+    <form onSubmit={handleSubmit} className="space-y-6">
       <AuthInput
         id="email"
         label="Correo electrónico"

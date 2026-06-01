@@ -1,3 +1,3 @@
-export * from './auth-provider';
-export * from './auth-context';
-export * from './auth.types';
+export * from "@/app/providers/auth";
+export * from "@/app/providers/auth/auth-context";
+export * from "@/app/providers/auth/auth-provider";

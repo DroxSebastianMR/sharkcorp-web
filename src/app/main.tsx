@@ -1,14 +1,14 @@
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
 
-import { App } from '@/app/app';
-import { setupInterceptors } from '@/services/api/interceptors';
+import { App } from "@/app/app";
+import { setupInterceptors } from "@/services/api/interceptors";
 
 export const bootstrap = (): void => {
-  const rootElement = document.getElementById('root');
+  const rootElement = document.getElementById("root");
 
   if (!rootElement) {
-    throw new Error('Root element not found');
+    throw new Error("Root element not found");
   }
 
   setupInterceptors();

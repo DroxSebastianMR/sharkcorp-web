@@ -1,18 +1,14 @@
-import type { PropsWithChildren } from 'react';
+import type { PropsWithChildren } from "react";
 
-import { QueryProvider } from '@/app/providers/query';
-import { ThemeProvider } from '@/app/providers/theme';
-import { AuthProvider } from '@/app/providers/auth';
+import { AuthProvider } from "@/app/providers/auth";
+import { QueryProvider } from "@/app/providers/query";
+import { ThemeProvider } from "@/app/providers/theme";
 
-export const AppProviders = ({
-  children,
-}: PropsWithChildren) => {
+export const AppProviders = ({ children }: PropsWithChildren) => {
   return (
     <ThemeProvider>
       <QueryProvider>
-        <AuthProvider>
-          {children}
-        </AuthProvider>
+        <AuthProvider>{children}</AuthProvider>
       </QueryProvider>
     </ThemeProvider>
   );

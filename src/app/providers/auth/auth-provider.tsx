@@ -1,16 +1,11 @@
-import type { PropsWithChildren } from 'react';
+import type { PropsWithChildren } from "react";
 
-import { useMemo, useState } from 'react';
+import { useMemo, useState } from "react";
 
-import { AuthContext } from '@/app/providers/auth/auth-context';
-import type {
-  AuthContextValue,
-  AuthUser,
-} from '@/app/providers/auth';
+import type { AuthContextValue, AuthUser } from "@/app/providers/auth";
+import { AuthContext } from "@/app/providers/auth/auth-context";
 
-export const AuthProvider = ({
-  children,
-}: PropsWithChildren) => {
+export const AuthProvider = ({ children }: PropsWithChildren) => {
   const [user] = useState<AuthUser | null>(null);
 
   const value = useMemo<AuthContextValue>(
@@ -19,22 +14,12 @@ export const AuthProvider = ({
       isAuthenticated: Boolean(user),
       isLoading: false,
 
-      login: async () => {
-        // TODO:
-        // Implement login flow
-      },
+      login: async () => {},
 
-      logout: () => {
-        // TODO:
-        // Implement logout flow
-      },
+      logout: () => {},
     }),
     [user],
   );
 
-  return (
-    <AuthContext.Provider value={value}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

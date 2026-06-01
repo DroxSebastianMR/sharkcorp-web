@@ -1,4 +1,4 @@
-import { AuthBrand } from '@/features/auth/components/auth-brand';
+import { AuthBrand } from "@/features/auth/components/auth-brand";
 
 export const AuthHero = () => {
   return (
@@ -48,9 +48,7 @@ export const AuthHero = () => {
         >
           Tu espacio,
           <br />
-          <span className="text-blue-200">
-            toda tu comunidad.
-          </span>
+          <span className="text-blue-200">toda tu comunidad.</span>
         </h1>
 
         <p
@@ -65,8 +63,7 @@ export const AuthHero = () => {
         >
           Conéctate con tu equipo, accede a tus herramientas
           <span className="hidden xl:inline"> </span>
-          <br className="xl:hidden" />
-          y mantente al día con SharkCorp.
+          <br className="xl:hidden" />y mantente al día con SharkCorp.
         </p>
       </div>
     </aside>
