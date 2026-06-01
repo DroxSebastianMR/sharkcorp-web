@@ -24,7 +24,7 @@ export const publicRoutes: RouteObject[] = [
           },
 
           {
-            path: PATHS.AUTH.RECOVER,
+            path: PATHS.AUTH.FORGOT_PASSWORD,
             element: <RecoverPage />,
           },
         ],

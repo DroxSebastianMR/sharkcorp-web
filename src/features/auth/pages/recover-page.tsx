@@ -1,5 +1,5 @@
-import { LoginForm } from '@/features/auth/forms/login-form';
+import { RecoveryForm } from '@/features/auth/forms/recovery-form';
 
 export const RecoverPage = () => {
-  return <LoginForm />;
+  return <RecoveryForm />;
 };
