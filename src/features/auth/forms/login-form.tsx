@@ -1,66 +1,114 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import { Eye, Mail, Lock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-
+import { Checkbox } from '@/components/ui/checkbox';
+import { AuthInput } from '@/features/auth/components/auth-input';
 import { PATHS } from '@/app/router/constants/paths';
+import { AuthFooter } from '@/features/auth/components/auth-footer';
 
 export const LoginForm = () => {
+  const [rememberMe, setRememberMe] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (rememberMe) {
+      localStorage.setItem('remember_me', 'true');
+    } else {
+      localStorage.removeItem('remember_me');
+    }
+
+    console.log('Remember Me:', rememberMe);
+
+  };
+
   return (
-    <form className="flex flex-col gap-6">
-      <div className="space-y-2 text-center">
-        <h1 className="text-2xl font-bold">
-          Welcome back
+    <form
+      onSubmit={handleSubmit}
+      className="mx-auto w-full max-w-[360px]"
+    >
+      <header className="mb-10 text-center">
+        <h1 className="text-[36px] font-bold tracking-[-0.02em]">
+          Bienvenido de nuevo
         </h1>
 
-        <p className="text-sm text-muted-foreground">
-          Sign in to continue to SHARKCORP
+        <p className="mt-3 text-sm text-muted-foreground">
+          Inicia sesión para acceder a tu intranet.
         </p>
+      </header>
+
+      <div className="space-y-6">
+        <AuthInput
+          id="email"
+          label="Correo electrónico"
+          type="email"
+          placeholder="nombre@sharkcorp.com"
+          Icon={Mail}
+        />
+
+        <AuthInput
+          id="password"
+          label="Contraseña"
+          type="password"
+          placeholder="••••••••••••••"
+          Icon={Lock}
+          rightElement={
+            <Eye
+              size={16}
+              className="cursor-pointer text-muted-foreground"
+            />
+          }
+        />
       </div>
 
-      <div className="space-y-4">
-        <div className="space-y-2">
-          <label
-            htmlFor="email"
-            className="text-sm font-medium"
-          >
-            Email
-          </label>
-
-          <Input
-            id="email"
-            type="email"
-            placeholder="name@company.com"
+      <div className="mt-6 flex items-center justify-between">
+        <label
+          htmlFor="remember"
+          className="flex cursor-pointer items-center gap-3"
+        >
+          <Checkbox
+            id="remember"
+            checked={rememberMe}
+            onCheckedChange={(checked) =>
+              setRememberMe(checked === true)
+            }
+            className="h-5 w-5 rounded-md border-gray-300"
           />
-        </div>
 
-        <div className="space-y-2">
-          <div className="flex items-center justify-between">
-            <label
-              htmlFor="password"
-              className="text-sm font-medium"
-            >
-              Password
-            </label>
+          <span className="text-sm text-muted-foreground">
+            Recuérdame
+          </span>
+        </label>
 
-            <Link
-              to={PATHS.AUTH.RECOVER}
-              className="text-sm text-muted-foreground hover:underline"
-            >
-              Forgot password?
-            </Link>
-          </div>
-
-          <Input
-            id="password"
-            type="password"
-          />
-        </div>
+        <Link
+          to={PATHS.AUTH.FORGOT_PASSWORD}
+          className="
+            whitespace-nowrap
+            text-sm
+            font-medium
+            text-primary
+            hover:underline
+          "
+        >
+          ¿Olvidaste tu contraseña?
+        </Link>
       </div>
 
-      <Button type="submit">
-        Sign in
+      <Button
+        type="submit"
+        className="
+          mt-8
+          h-12
+          w-full
+          rounded-xl
+          text-sm
+          font-semibold
+        "
+      >
+        Iniciar sesión
       </Button>
+      <AuthFooter />
     </form>
   );
 };
