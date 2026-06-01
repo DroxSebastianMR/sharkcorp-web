@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Eye, Mail, Lock } from 'lucide-react';
+
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
+
 import { AuthInput } from '@/features/auth/components/auth-input';
+
 import { PATHS } from '@/app/router/constants/paths';
-import { AuthFooter } from '@/features/auth/components/auth-footer';
 
 export const LoginForm = () => {
   const [rememberMe, setRememberMe] = useState(false);
@@ -20,24 +22,13 @@ export const LoginForm = () => {
     }
 
     console.log('Remember Me:', rememberMe);
-
   };
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="mx-auto w-full max-w-[360px]"
+      className="space-y-6"
     >
-      <header className="mb-10 text-center">
-        <h1 className="text-[36px] font-bold tracking-[-0.02em]">
-          Bienvenido de nuevo
-        </h1>
-
-        <p className="mt-3 text-sm text-muted-foreground">
-          Inicia sesión para acceder a tu intranet.
-        </p>
-      </header>
-
       <div className="space-y-6">
         <AuthInput
           id="email"
@@ -56,13 +47,13 @@ export const LoginForm = () => {
           rightElement={
             <Eye
               size={16}
-              className="cursor-pointer text-muted-foreground"
+              className="cursor-pointer"
             />
           }
         />
       </div>
 
-      <div className="mt-6 flex items-center justify-between">
+      <div className="flex items-center justify-between">
         <label
           htmlFor="remember"
           className="flex cursor-pointer items-center gap-3"
@@ -98,7 +89,6 @@ export const LoginForm = () => {
       <Button
         type="submit"
         className="
-          mt-8
           h-12
           w-full
           rounded-xl
@@ -108,7 +98,6 @@ export const LoginForm = () => {
       >
         Iniciar sesión
       </Button>
-      <AuthFooter />
     </form>
   );
 };
