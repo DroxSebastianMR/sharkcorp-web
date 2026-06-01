@@ -1,6 +1,6 @@
-import type { LucideIcon } from 'lucide-react';
+import type { LucideIcon } from "lucide-react";
 
-import { Input } from '@/components/ui/input';
+import { Input } from "@/components/ui/input";
 
 interface AuthInputProps {
   id: string;
@@ -14,17 +14,14 @@ interface AuthInputProps {
 export const AuthInput = ({
   id,
   label,
-  type = 'text',
+  type = "text",
   placeholder,
   Icon,
   rightElement,
 }: AuthInputProps) => {
   return (
     <div className="space-y-3">
-      <label
-        htmlFor={id}
-        className="text-[13px] font-medium"
-      >
+      <label htmlFor={id} className="text-[13px] font-medium">
         {label}
       </label>
 

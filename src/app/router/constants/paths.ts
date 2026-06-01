@@ -1,13 +1,13 @@
 export const PATHS = {
-  ROOT: '/',
+  ROOT: "/",
 
   AUTH: {
-    LOGIN: '/login',
-    FORGOT_PASSWORD: '/forgot-password',
-    RESET_PASSWORD: '/reset-password',
+    LOGIN: "/login",
+    FORGOT_PASSWORD: "/forgot-password",
+    RESET_PASSWORD: "/reset-password",
   },
 
   DASHBOARD: {
-    HOME: '/dashboard',
+    HOME: "/dashboard",
   },
 } as const;

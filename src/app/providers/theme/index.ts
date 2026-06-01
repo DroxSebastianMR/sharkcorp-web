@@ -1,1 +1,2 @@
-export * from '@/app/providers/theme/theme-provider';
+export * from "./theme-provider";
+export * from "./use-theme-context";

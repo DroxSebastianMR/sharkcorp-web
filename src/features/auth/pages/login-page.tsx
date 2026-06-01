@@ -1,5 +1,5 @@
-import { AuthFooter } from '@/features/auth/components/auth-footer';
-import { LoginForm } from '@/features/auth/forms/login-form';
+import { AuthFooter } from "@/features/auth/components/auth-footer";
+import { LoginForm } from "@/features/auth/forms/login-form";
 
 export const LoginPage = () => {
   return (

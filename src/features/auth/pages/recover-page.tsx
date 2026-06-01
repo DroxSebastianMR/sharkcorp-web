@@ -1,5 +1,5 @@
-import { AuthFooter } from '@/features/auth/components/auth-footer';
-import { RecoveryForm } from '@/features/auth/forms/recovery-form';
+import { AuthFooter } from "@/features/auth/components/auth-footer";
+import { RecoveryForm } from "@/features/auth/forms/recovery-form";
 
 export const RecoverPage = () => {
   return (
@@ -14,9 +14,7 @@ export const RecoverPage = () => {
           restablecer tu contraseña.
         </p>
       </header>
-
       <RecoveryForm />
-
       <AuthFooter />
     </div>
   );
