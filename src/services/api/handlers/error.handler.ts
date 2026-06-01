@@ -1,9 +1,7 @@
-import type { AxiosError } from 'axios';
+import type { AxiosError } from "axios";
 
 export const errorHandler = {
-  handleApiError: (
-    error: AxiosError,
-  ): Promise<never> => {
+  handleApiError: (error: AxiosError): Promise<never> => {
     /*
       Aquí luego puedes:
       - toast notifications

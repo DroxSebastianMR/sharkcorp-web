@@ -1,5 +1,5 @@
-import '@/styles/index.css';
+import "@/styles/index.css";
 
-import { bootstrap } from '@/app/main';
+import { bootstrap } from "@/app/main";
 
 bootstrap();

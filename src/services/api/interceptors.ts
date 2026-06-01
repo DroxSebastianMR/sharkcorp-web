@@ -2,43 +2,35 @@ import type {
   AxiosError,
   AxiosResponse,
   InternalAxiosRequestConfig,
-} from 'axios';
+} from "axios";
 
-import { apiClient } from '@/services/api/client';
+import { apiClient } from "@/services/api/client";
 
-import { authHandler } from './handlers/auth.handler';
-import { errorHandler } from './handlers/error.handler';
-import { tokenHandler } from './handlers/token.handler';
+import { authHandler } from "./handlers/auth.handler";
+import { errorHandler } from "./handlers/error.handler";
+import { tokenHandler } from "./handlers/token.handler";
 
 const onRequest = (
   config: InternalAxiosRequestConfig,
 ): InternalAxiosRequestConfig => {
-  const accessToken =
-    tokenHandler.getAccessToken();
+  const accessToken = tokenHandler.getAccessToken();
 
   if (accessToken) {
-    config.headers.Authorization =
-      `Bearer ${accessToken}`;
+    config.headers.Authorization = `Bearer ${accessToken}`;
   }
 
   return config;
 };
 
-const onRequestError = (
-  error: AxiosError,
-): Promise<AxiosError> => {
+const onRequestError = (error: AxiosError): Promise<AxiosError> => {
   return Promise.reject(error);
 };
 
-const onResponse = (
-  response: AxiosResponse,
-): AxiosResponse => {
+const onResponse = (response: AxiosResponse): AxiosResponse => {
   return response;
 };
 
-const onResponseError = async (
-  error: AxiosError,
-): Promise<never> => {
+const onResponseError = async (error: AxiosError): Promise<never> => {
   const status = error.response?.status;
 
   switch (status) {
@@ -54,19 +46,11 @@ const onResponseError = async (
       break;
   }
 
-  return errorHandler.handleApiError(
-    error,
-  );
+  return errorHandler.handleApiError(error);
 };
 
 export const setupInterceptors = (): void => {
-  apiClient.interceptors.request.use(
-    onRequest,
-    onRequestError,
-  );
+  apiClient.interceptors.request.use(onRequest, onRequestError);
 
-  apiClient.interceptors.response.use(
-    onResponse,
-    onResponseError,
-  );
+  apiClient.interceptors.response.use(onResponse, onResponseError);
 };
