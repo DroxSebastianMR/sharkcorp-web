@@ -1,15 +1,16 @@
-import type { RouteObject } from 'react-router-dom';
+import type { RouteObject } from "react-router-dom";
 
-import { PublicRoute } from '@/app/router/guards/public-route';
+import { PublicRoute } from "@/app/router/guards/public-route";
 
-import { AuthLayout } from '@/layouts/auth/auth-layout';
+import { AuthLayout } from "@/layouts/auth/auth-layout";
 
 import {
   LoginPage,
   RecoverPage,
-} from '@/features/auth/pages';
+  RecoverySentPage,
+} from "@/features/auth/pages";
 
-import { PATHS } from '@/app/router/constants/paths';
+import { PATHS } from "@/app/router/constants/paths";
 
 export const publicRoutes: RouteObject[] = [
   {
@@ -26,6 +27,10 @@ export const publicRoutes: RouteObject[] = [
           {
             path: PATHS.AUTH.FORGOT_PASSWORD,
             element: <RecoverPage />,
+          },
+          {
+            path: PATHS.AUTH.RECOVERY_SENT,
+            element: <RecoverySentPage />,
           },
         ],
       },

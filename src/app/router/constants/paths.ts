@@ -3,8 +3,9 @@ export const PATHS = {
 
   AUTH: {
     LOGIN: "/login",
-    FORGOT_PASSWORD: "/forgot-password",
+    FORGOT_PASSWORD: "/recover",
     RESET_PASSWORD: "/reset-password",
+    RECOVERY_SENT: "/recover/sent",
   },
 
   DASHBOARD: {
