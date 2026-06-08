@@ -14,7 +14,7 @@ export const RecoverySentPage = ({
     <div className="mx-auto w-full max-w-[420px]">
       <Link
         to={PATHS.AUTH.LOGIN}
-        className="mb-8 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+        className="mb-8 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground "
       >
         <ArrowLeft className="h-4 w-4" />
         Volver al inicio de sesión
@@ -25,11 +25,11 @@ export const RecoverySentPage = ({
           <CheckCircle2 className="h-10 w-10 text-emerald-600" />
         </div>
 
-        <h1 className="text-4xl font-bold tracking-tight">
+        <h1 className="text-4xl font-bold tracking-tight text-left">
           ¡Enlace de recuperación enviado!
         </h1>
 
-        <p className="mt-4 text-muted-foreground">
+        <p className="mt-4 text-muted-foreground text-left">
           Hemos enviado un enlace para restablecer tu contraseña a:
         </p>
 
@@ -39,18 +39,18 @@ export const RecoverySentPage = ({
           <span className="text-sm font-medium">{email}</span>
         </div>
 
-        <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
+        <p className="mt-6 text-sm leading-relaxed text-muted-foreground text-left">
           Revisa tu bandeja de entrada y también la carpeta de spam o correo no
           deseado.
         </p>
 
         <div className="mt-8 w-full rounded-xl border bg-blue-50 p-4 text-left dark:bg-blue-950/30">
           <p className="text-sm font-medium text-blue-700 dark:text-blue-300">
-            El enlace expirará en 60 minutos.
+            El enlace expirará en 60 segundos.
           </p>
 
           <p className="mt-1 text-sm text-muted-foreground">
-            Si no recibes el correo, puedes solicitar uno nuevo.
+            Si no recibes el correo, puedes solicitar un nuevo enlace.
           </p>
         </div>
 
