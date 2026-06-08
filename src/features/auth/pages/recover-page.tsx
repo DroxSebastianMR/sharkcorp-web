@@ -6,7 +6,7 @@ export const RecoverPage = () => {
     <div className="mx-auto w-full max-w-[360px]">
       <header className="mb-10 text-center">
         <h1 className="text-[36px] font-bold tracking-[-0.02em]">
-          Recuperar acceso
+          ¿Olvidaste tu contraseña?
         </h1>
 
         <p className="mt-3 text-sm text-muted-foreground">
