@@ -1,3 +1,4 @@
+import saludoImg from "@/assets/img/auth/saludo.png";
 import { AuthBrand } from "@/features/auth/components/auth-brand";
 
 export const AuthHero = () => {
@@ -17,25 +18,45 @@ export const AuthHero = () => {
         bg-[linear-gradient(180deg,#1652FF_0%,#0D3CC8_45%,#071B73_100%)]
       "
     >
+      {/* Efectos de fondo */}
       <div className="absolute left-[-100px] top-[-100px] h-[300px] w-[300px] rounded-full bg-white/5 blur-3xl" />
       <div className="absolute bottom-[-120px] right-[-120px] h-[350px] w-[350px] rounded-full bg-blue-300/5 blur-3xl" />
+
       <div className="relative z-10">
         <AuthBrand />
       </div>
+
+      {/* Imagen central */}
       <div className="relative z-10 flex flex-1 items-center justify-center">
-        <img
-          src="/images/shark-mascot.png"
-          alt="SharkCorp"
+        {/* Glow detrás de la imagen */}
+        <div
           className="
-            w-[180px]
-            xl:w-[240px]
-            2xl:w-[300px]
+            absolute
+            h-[380px]
+            w-[380px]
+            rounded-full
+            bg-white/15
+            blur-[90px]
+          "
+        />
+
+        <img
+          src={saludoImg}
+          alt="Saludo"
+          className="
+            relative
+            z-10
+            w-[320px]
+            xl:w-[420px]
+            2xl:w-[500px]
             object-contain
             select-none
+            drop-shadow-[0_20px_60px_rgba(255,255,255,0.15)]
           "
           draggable={false}
         />
       </div>
+
       <div className="relative z-10 max-w-sm">
         <h1
           className="
