@@ -4,16 +4,18 @@ import type {
   InternalAxiosRequestConfig,
 } from "axios";
 
-import { apiClient } from "@/services/api/client";
+import type { AuthApiError } from "@/features/auth/types/auth-error.types";
 
-import { authHandler } from "./handlers/auth.handler";
+import { apiClient } from "./client";
+
+import { AuthErrorCode } from "@/features/auth/enums/auth-error-code.enum";
+import { authHandler } from "@/features/auth/utils/auth.handler";
 import { errorHandler } from "./handlers/error.handler";
-import { tokenHandler } from "./handlers/token.handler";
 
 const onRequest = (
   config: InternalAxiosRequestConfig,
 ): InternalAxiosRequestConfig => {
-  const accessToken = tokenHandler.getAccessToken();
+  const accessToken = authHandler.getAccessToken();
 
   if (accessToken) {
     config.headers.Authorization = `Bearer ${accessToken}`;
@@ -30,16 +32,18 @@ const onResponse = (response: AxiosResponse): AxiosResponse => {
   return response;
 };
 
-const onResponseError = async (error: AxiosError): Promise<never> => {
-  const status = error.response?.status;
+const onResponseError = async (
+  error: AxiosError<AuthApiError>,
+): Promise<never> => {
+  const errorCode = error.response?.data?.code;
 
-  switch (status) {
-    case 401:
+  switch (errorCode) {
+    case AuthErrorCode.TOKEN_EXPIRED:
+    case AuthErrorCode.INVALID_ACCESS_TOKEN:
+    case AuthErrorCode.INVALID_REFRESH_TOKEN:
+    case AuthErrorCode.REFRESH_TOKEN_EXPIRED:
+    case AuthErrorCode.REFRESH_TOKEN_REVOKED:
       authHandler.logout();
-      break;
-    case 403:
-      break;
-    case 500:
       break;
 
     default:

@@ -1,15 +1,13 @@
 import type { AxiosError } from "axios";
 
-export const errorHandler = {
-  handleApiError: (error: AxiosError): Promise<never> => {
-    /*
-      Aquí luego puedes:
-      - toast notifications
-      - sentry
-      - logs
-      - analytics
-    */
+import type { AuthApiError } from "@/features/auth/types/auth-error.types";
 
-    return Promise.reject(error);
+import { mapAuthError } from "@/features/auth/utils/auth-error.mapper";
+
+export const errorHandler = {
+  handleApiError(error: AxiosError<AuthApiError>): never {
+    const message = mapAuthError(error.response?.data?.code);
+
+    throw new Error(message);
   },
 };
