@@ -11,4 +11,12 @@ export const PATHS = {
   DASHBOARD: {
     HOME: "/dashboard",
   },
+
+  ATTENDANCE: {
+    HOME: "/attendance",
+  },
+
+  AGENDA: {
+    HOME: "/agenda",
+  },
 } as const;
