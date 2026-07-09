@@ -1,66 +1,102 @@
-import { ArrowLeft, CheckCircle2, Mail } from "lucide-react";
-import { Link } from "react-router-dom";
+import { ArrowLeft, Info, Mail, MailCheck, Send } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 
 import { PATHS } from "@/app/router/constants/paths";
 
-interface RecoverySentPageProps {
+interface RecoverySentLocationState {
   email?: string;
 }
 
-export const RecoverySentPage = ({
-  email = "nombre@sharkcorp.com",
-}: RecoverySentPageProps) => {
+export const RecoverySentPage = () => {
+  const { state } = useLocation();
+  const email =
+    (state as RecoverySentLocationState | null)?.email ??
+    "nombre@sharkcorp.com";
+
   return (
-    <div className="mx-auto w-full max-w-[420px]">
+    <div className="mx-auto flex w-full max-w-[360px] flex-col">
       <Link
-        to={PATHS.AUTH.LOGIN}
-        className="mb-8 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+        to={PATHS.AUTH.FORGOT_PASSWORD}
+        className="
+          mb-12
+          mt-10
+          inline-flex
+          w-fit
+          items-center
+          gap-2
+          text-sm
+          font-medium
+          text-slate-600
+          transition-colors
+          hover:text-slate-950
+        "
       >
         <ArrowLeft className="h-4 w-4" />
-        Volver al inicio de sesión
+        Volver a recuperar contraseña
       </Link>
 
-      <div className="flex flex-col items-center text-center">
-        <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-950">
-          <CheckCircle2 className="h-10 w-10 text-emerald-600" />
+      <header className="mb-6">
+        <div className="relative">
+          <div className="absolute -left-[72px] top-0 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-50 text-emerald-500 shadow-[0_18px_50px_rgba(16,185,129,0.12)]">
+            <span className="absolute inset-0 rounded-full bg-emerald-400/20 animate-icon-pulse" />
+            <MailCheck className="relative z-10 h-7 w-7" />
+          </div>
+
+          <h1 className="text-[30px] font-extrabold leading-tight tracking-[-0.02em] text-slate-950">
+            ¡Enlace de recuperación enviado!
+          </h1>
         </div>
 
-        <h1 className="text-4xl font-bold tracking-tight">
-          ¡Enlace de recuperación enviado!
-        </h1>
-
-        <p className="mt-4 text-muted-foreground">
+        <p className="mt-4 text-sm leading-relaxed text-slate-600">
           Hemos enviado un enlace para restablecer tu contraseña a:
         </p>
+      </header>
 
-        <div className="mt-6 flex w-full items-center gap-3 rounded-xl border bg-muted/40 px-4 py-4">
-          <Mail className="h-5 w-5 text-muted-foreground" />
+      <div className="flex h-12 items-center gap-4 rounded-xl bg-slate-100 px-4 text-slate-950">
+        <Mail className="h-4 w-4 text-slate-600" />
+        <span className="text-sm font-extrabold">{email}</span>
+      </div>
 
-          <span className="text-sm font-medium">{email}</span>
-        </div>
+      <p className="mt-5 text-sm leading-relaxed text-slate-600">
+        Revisa tu bandeja de entrada y también la carpeta de spam o correo no
+        deseado.
+      </p>
 
-        <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
-          Revisa tu bandeja de entrada y también la carpeta de spam o correo no
-          deseado.
-        </p>
-
-        <div className="mt-8 w-full rounded-xl border bg-blue-50 p-4 text-left dark:bg-blue-950/30">
-          <p className="text-sm font-medium text-blue-700 dark:text-blue-300">
+      <div className="mt-6 flex gap-3 rounded-xl bg-[#f4f6ff] p-4">
+        <Info className="mt-0.5 h-4 w-4 shrink-0 text-[#0757ff]" />
+        <div>
+          <p className="text-xs font-extrabold text-[#0757ff]">
             El enlace expirará en 60 minutos.
           </p>
-
-          <p className="mt-1 text-sm text-muted-foreground">
-            Si no recibes el correo, puedes solicitar uno nuevo.
+          <p className="mt-1 text-xs leading-relaxed text-slate-500">
+            Si no recibes el correo, puedes solicitar un nuevo enlace.
           </p>
         </div>
-
-        <Link
-          to={PATHS.AUTH.FORGOT_PASSWORD}
-          className="mt-8 flex h-12 w-full items-center justify-center rounded-xl bg-primary font-medium text-primary-foreground shadow-lg transition-opacity hover:opacity-90"
-        >
-          Enviar otro enlace
-        </Link>
       </div>
+
+      <Link
+        to={PATHS.AUTH.FORGOT_PASSWORD}
+        className="
+          mt-6
+          inline-flex
+          h-14
+          w-full
+          items-center
+          justify-center
+          rounded-[14px]
+          bg-[#0757ff]
+          font-button
+          text-base
+          font-extrabold
+          text-white
+          shadow-[0_18px_36px_rgba(7,87,255,0.22)]
+          transition-colors
+          hover:bg-[#004be0]
+        "
+      >
+        Enviar otro enlace
+        <Send className="ml-2 h-5 w-5" />
+      </Link>
     </div>
   );
 };

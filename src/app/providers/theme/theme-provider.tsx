@@ -1,34 +1,22 @@
-import { useEffect, useMemo, useState, type PropsWithChildren } from "react";
+import { useEffect, useMemo, type PropsWithChildren } from "react";
 
 import { ThemeContext, type Theme } from "./theme-context";
 
+const LIGHT_THEME: Theme = "light";
+
 export const ThemeProvider = ({ children }: PropsWithChildren) => {
-  const [theme, setThemeState] = useState<Theme>(() => {
-    const storedTheme = localStorage.getItem("theme") as Theme | null;
-
-    if (storedTheme === "light" || storedTheme === "dark") {
-      return storedTheme;
-    }
-
-    return window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
-  });
-
   useEffect(() => {
-    document.documentElement.classList.toggle("dark", theme === "dark");
-
-    localStorage.setItem("theme", theme);
-  }, [theme]);
+    document.documentElement.classList.remove("dark");
+    localStorage.setItem("theme", LIGHT_THEME);
+  }, []);
 
   const value = useMemo(
     () => ({
-      theme,
-      setTheme: setThemeState,
-      toggleTheme: () =>
-        setThemeState((current) => (current === "light" ? "dark" : "light")),
+      theme: LIGHT_THEME,
+      setTheme: () => undefined,
+      toggleTheme: () => undefined,
     }),
-    [theme],
+    [],
   );
 
   return (

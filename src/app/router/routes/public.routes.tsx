@@ -8,6 +8,7 @@ import {
   LoginPage,
   RecoverPage,
   RecoverySentPage,
+  ResetPasswordPage,
 } from "@/features/auth/pages";
 
 import { PATHS } from "@/app/router/constants/paths";
@@ -31,6 +32,10 @@ export const publicRoutes: RouteObject[] = [
           {
             path: PATHS.AUTH.RECOVERY_SENT,
             element: <RecoverySentPage />,
+          },
+          {
+            path: PATHS.AUTH.RESET_PASSWORD,
+            element: <ResetPasswordPage />,
           },
         ],
       },
