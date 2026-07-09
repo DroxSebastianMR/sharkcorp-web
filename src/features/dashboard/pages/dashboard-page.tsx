@@ -89,6 +89,15 @@ const events = [
 export const DashboardPage = () => {
   return (
     <div className="min-h-[calc(100vh-5rem)] px-5 py-5 lg:px-12">
+      <section className="mb-6">
+        <h2 className="font-heading text-3xl font-extrabold text-[#083da8]">
+          Dashboard general
+        </h2>
+        <p className="mt-1 text-sm font-medium text-slate-500">
+          Visualiza indicadores clave, anuncios, eventos y accesos prioritarios.
+        </p>
+      </section>
+
       <section className="grid gap-5 xl:grid-cols-4">
         {statCards.map(({ label, value, detail, icon: Icon, color, sparkline }) => (
           <article

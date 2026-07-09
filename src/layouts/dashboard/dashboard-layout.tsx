@@ -29,21 +29,43 @@ type NavigationItem = {
   icon: LucideIcon;
   path?: string;
   expandable?: boolean;
-  children?: string[];
+  children?: {
+    label: string;
+    path?: string;
+  }[];
 };
 
 const navigationItems: NavigationItem[] = [
   { label: "Dashboard", icon: LayoutDashboard, path: PATHS.DASHBOARD.HOME },
-  { label: "Asistencias", icon: ClipboardList, path: PATHS.ATTENDANCE.HOME },
+  {
+    label: "Asistencias",
+    icon: ClipboardList,
+    children: [
+      { label: "Resumen", path: PATHS.ATTENDANCE.OVERVIEW },
+      { label: "Registro y reportes", path: PATHS.ATTENDANCE.RECORDS_REPORTS },
+      { label: "Faltas y ausencias", path: PATHS.ATTENDANCE.ABSENCES },
+      { label: "Justificaciones", path: PATHS.ATTENDANCE.JUSTIFICATIONS },
+    ],
+  },
   { label: "Agenda", icon: CalendarDays, path: PATHS.AGENDA.HOME },
-  { label: "Tareas", icon: SquareCheckBig },
-  { label: "Anuncios", icon: Megaphone },
-  { label: "Clientes", icon: UserRoundCheck },
-  { label: "Proyectos", icon: FolderKanban },
-  { label: "Documentos", icon: Folder },
-  { label: "Directorio", icon: Users },
-  { label: "Historial", icon: Clock3 },
-  { label: "Configuración", icon: Settings, expandable: true },
+  { label: "Tareas", icon: SquareCheckBig, path: PATHS.TASKS.HOME },
+  { label: "Anuncios", icon: Megaphone, path: PATHS.ANNOUNCEMENTS.HOME },
+  { label: "Clientes", icon: UserRoundCheck, path: PATHS.CLIENTS.HOME },
+  { label: "Proyectos", icon: FolderKanban, path: PATHS.PROJECTS.HOME },
+  { label: "Documentos", icon: Folder, path: PATHS.DOCUMENTS.HOME },
+  { label: "Directorio", icon: Users, path: PATHS.DIRECTORY.HOME },
+  { label: "Historial", icon: Clock3, path: PATHS.HISTORY.HOME },
+  {
+    label: "Configuración",
+    icon: Settings,
+    children: [
+      { label: "Seguridad y acceso", path: PATHS.SETTINGS.SECURITY_ACCESS },
+      { label: "Perfil de empresa", path: PATHS.SETTINGS.COMPANY },
+      { label: "Notificaciones", path: PATHS.SETTINGS.NOTIFICATIONS },
+      { label: "Integraciones", path: PATHS.SETTINGS.INTEGRATIONS },
+      { label: "Respaldos y retención", path: PATHS.SETTINGS.BACKUPS },
+    ],
+  },
 ];
 
 export const DashboardLayout = () => {
@@ -53,7 +75,7 @@ export const DashboardLayout = () => {
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [openSidebarGroup, setOpenSidebarGroup] = useState<string | null>(
-    "Gestion",
+    "Configuración",
   );
 
   const profileName = session?.profile.fullName ?? "Gerente General";
@@ -106,7 +128,9 @@ export const DashboardLayout = () => {
             ({ label, icon: Icon, path, expandable, children }) => {
               const hasChildren = !!children?.length;
               const isGroupOpen = openSidebarGroup === label;
-              const active = path ? location.pathname === path : false;
+              const active = path
+                ? location.pathname === path
+                : !!children?.some((child) => child.path === location.pathname);
 
               return (
                 <div key={label}>
@@ -170,16 +194,26 @@ export const DashboardLayout = () => {
                       ].join(" ")}
                     >
                       <div className="overflow-hidden">
-                        <div className="ml-[52px] mt-2 space-y-1.5 border-l border-white/12 pl-4">
-                          {children.map((child) => (
-                            <button
-                              className="block h-8 w-full cursor-pointer rounded-xl px-3 text-left font-button text-sm font-medium text-blue-100/75 transition hover:bg-white/10 hover:text-white"
-                              key={child}
-                              type="button"
-                            >
-                              {child}
-                            </button>
-                          ))}
+                      <div className="ml-[38px] mt-2 space-y-1.5 border-l border-white/12 pl-3">
+                        {children.map((child) => (
+                          <button
+                            className={[
+                              "block min-h-9 w-full cursor-pointer rounded-xl px-4 py-2 text-left font-button text-[13px] font-semibold leading-tight transition hover:bg-white/10 hover:text-white",
+                              child.path === location.pathname
+                                ? "bg-white/10 text-white"
+                                : "text-blue-100/75",
+                            ].join(" ")}
+                            key={child.label}
+                            onClick={() => {
+                              if (child.path) {
+                                navigate(child.path);
+                              }
+                            }}
+                            type="button"
+                          >
+                            {child.label}
+                          </button>
+                        ))}
                         </div>
                       </div>
                     </div>

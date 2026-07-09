@@ -3,9 +3,7 @@ import {
   CalendarDays,
   ChevronDown,
   Clock3,
-  Download,
   MoreVertical,
-  Plus,
   Search,
   TimerReset,
   UserCheck,
@@ -123,26 +121,16 @@ const weeklyBars = [
 export const AttendanceGeneralManagerPage = () => {
   return (
     <div className="min-h-[calc(100vh-5rem)] max-w-full overflow-x-hidden px-5 py-4 lg:px-10">
-      <section className="flex flex-wrap items-start justify-between gap-4">
-        <div className="flex gap-3">
-          <button
-            className="flex h-10 cursor-pointer items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 font-button text-sm font-semibold text-slate-700 shadow-sm transition hover:border-[#0757ff]/40 hover:text-[#0757ff]"
-            type="button"
-          >
-            <Download className="h-4 w-4" />
-            Exportar CSV
-          </button>
-          <button
-            className="flex h-10 cursor-pointer items-center gap-2 rounded-xl bg-[#0757ff] px-5 font-button text-sm font-bold text-white shadow-[0_14px_28px_rgba(7,87,255,0.22)] transition hover:bg-[#064be0]"
-            type="button"
-          >
-            <Plus className="h-4 w-4" />
-            Nuevo registro
-          </button>
-        </div>
+      <section className="mb-6">
+        <h2 className="font-heading text-3xl font-extrabold text-[#083da8]">
+          Resumen de asistencias
+        </h2>
+        <p className="mt-1 text-sm font-medium text-slate-500">
+          Monitorea presencia, puntualidad y alertas principales del equipo.
+        </p>
       </section>
 
-      <section className="mt-6 grid gap-4 xl:grid-cols-3">
+      <section className="grid gap-4 xl:grid-cols-3">
         {summaryCards.map(({ label, value, suffix, detail, tone, icon: Icon, iconClass }) => (
           <article
             className="relative overflow-hidden rounded-2xl bg-white p-5 shadow-[0_16px_32px_rgba(14,43,92,0.08)] ring-1 ring-slate-200/70"
