@@ -1,51 +1,31 @@
-import { ArrowLeft, LockKeyhole } from "lucide-react";
-import { Link } from "react-router-dom";
+import { LockKeyhole } from "lucide-react";
 
 import { PATHS } from "@/app/router/constants/paths";
+import { AuthBackButton } from "@/features/auth/components/AuthBackButton";
+import { AuthHeader } from "@/features/auth/components/AuthHeader";
+import { AuthPageContainer } from "@/features/auth/components/AuthPageContainer";
 import { ResetPasswordForm } from "@/features/auth/forms/reset-password-form";
 
 export const ResetPasswordPage = () => {
   return (
-    <div className="mx-auto flex w-full max-w-[360px] flex-col">
-      <Link
+    <AuthPageContainer>
+      <AuthBackButton
         to={PATHS.AUTH.LOGIN}
-        className="
-          mb-8
-          mt-8
-          inline-flex
-          w-fit
-          items-center
-          gap-2
-          text-sm
-          font-medium
-          text-slate-600
-          transition-colors
-          hover:text-slate-950
-        "
-      >
-        <ArrowLeft className="h-4 w-4" />
-        Volver al inicio de sesión
-      </Link>
+        text="Volver al inicio de sesión"
+        className="mt-8 mb-8"
+      />
 
-      <header className="mb-6">
-        <div className="relative">
-          <div className="absolute -left-16 top-0 flex h-12 w-12 items-center justify-center rounded-full bg-[#e7edff] text-[#0757ff]">
-            <span className="absolute inset-0 rounded-full bg-[#0757ff]/20 animate-icon-pulse" />
-            <LockKeyhole className="relative z-10 h-6 w-6" />
-          </div>
-
-          <h1 className="text-[30px] font-extrabold leading-tight tracking-[-0.02em] text-slate-950">
-            Crea tu nueva contraseña
-          </h1>
-        </div>
-
-        <p className="mt-4 text-sm leading-relaxed text-slate-600">
-          Tu nueva contraseña debe ser diferente a las contraseñas utilizadas
-          anteriormente.
-        </p>
-      </header>
+      <AuthHeader
+        className="mb-6"
+        icon={LockKeyhole}
+        rounded="full"
+        iconContainerClassName="bg-[#e7edff] text-[#0757ff]"
+        iconClassName="bg-[#0757ff]/20"
+        title="Crea tu nueva contraseña"
+        description="Tu nueva contraseña debe ser diferente a las contraseñas utilizadas anteriormente."
+      />
 
       <ResetPasswordForm />
-    </div>
+    </AuthPageContainer>
   );
 };

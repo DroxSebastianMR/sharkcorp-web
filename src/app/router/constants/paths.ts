@@ -58,6 +58,10 @@ export const PATHS = {
     HOME: "/history",
   },
 
+  DIALOGS: {
+    HOME: "/dialogs",
+  },
+
   SETTINGS: {
     HOME: "/settings",
     SECURITY_ACCESS: "/settings/security-access",

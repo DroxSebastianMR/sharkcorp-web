@@ -23,6 +23,7 @@ import { DocumentsGeneralManagerPage } from '@/features/documents/pages/general-
 import { DocumentCreatePage } from '@/features/documents/create/pages/general-manager';
 import { DirectoryGeneralManagerPage } from '@/features/directory/pages/general-manager';
 import { HistoryGeneralManagerPage } from '@/features/history/pages/general-manager';
+import { DialogsShowcasePage } from '@/features/dialogs/pages/general-manager';
 import {
   SettingsBackupsPage,
   SettingsCompanyPage,
@@ -115,6 +116,10 @@ export const protectedRoutes: RouteObject[] = [
           {
             path: PATHS.HISTORY.HOME,
             element: <HistoryGeneralManagerPage />,
+          },
+          {
+            path: PATHS.DIALOGS.HOME,
+            element: <DialogsShowcasePage />,
           },
           {
             path: PATHS.SETTINGS.HOME,
