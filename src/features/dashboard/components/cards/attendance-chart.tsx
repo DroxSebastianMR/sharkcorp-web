@@ -2,7 +2,7 @@ import { TrendingUp } from "lucide-react";
 
 import { AttendanceBar } from "./attendance-bar";
 
-import type { AttendanceChartProps } from "../types/dashboard.types";
+import type { AttendanceChartProps } from "../../types/dashboard.types";
 
 export const AttendanceChart = ({
   data,

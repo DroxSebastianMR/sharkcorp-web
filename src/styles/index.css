@@ -130,6 +130,8 @@
 
   html {
     @apply font-sans;
+    overflow-y: scroll;
+    scrollbar-gutter: stable;
     scrollbar-color: #0757ff #eaf0ff;
     scrollbar-width: thin;
   }

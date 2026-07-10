@@ -20,9 +20,10 @@ export const DashboardSidebarItem = ({
 
   const hasChildren = children.length > 0;
 
-  const isOpen = openSidebarGroup === label;
-
-  const isActive = path === location.pathname;
+  const isActive =
+    path === location.pathname ||
+    children.some((child) => child.path === location.pathname);
+  const isOpen = openSidebarGroup === label || isActive;
 
   const handleClick = () => {
     if (hasChildren) {
@@ -93,17 +94,26 @@ export const DashboardSidebarItem = ({
           ].join(" ")}
         >
           <div className="overflow-hidden">
-            <div className="ml-[52px] mt-2 space-y-1.5 border-l border-white/12 pl-4">
-              {children.map(({ label, path }) => (
-                <button
-                  key={label}
-                  type="button"
-                  onClick={() => path && navigate(path)}
-                  className="block h-8 w-full cursor-pointer rounded-xl px-3 text-left font-button text-sm font-medium text-blue-100/75 transition hover:bg-white/10 hover:text-white"
-                >
-                  {label}
-                </button>
-              ))}
+            <div className="ml-[46px] mt-2 space-y-1.5 border-l border-white/12 pl-3">
+              {children.map(({ label, path }) => {
+                const isChildActive = path === location.pathname;
+
+                return (
+                  <button
+                    key={label}
+                    type="button"
+                    onClick={() => path && navigate(path)}
+                    className={[
+                      "block min-h-9 w-full cursor-pointer rounded-xl px-3 py-2 text-left font-button text-sm font-semibold leading-snug transition hover:bg-white/10 hover:text-white",
+                      isChildActive
+                        ? "bg-white/12 text-white"
+                        : "text-blue-100/75",
+                    ].join(" ")}
+                  >
+                    {label}
+                  </button>
+                );
+              })}
             </div>
           </div>
         </div>

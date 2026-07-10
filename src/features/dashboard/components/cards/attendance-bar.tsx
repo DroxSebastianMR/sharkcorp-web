@@ -1,4 +1,4 @@
-import type { AttendanceItem } from "../types/dashboard.types";
+import type { AttendanceItem } from "../../types/dashboard.types";
 
 interface AttendanceBarProps {
   item: AttendanceItem;

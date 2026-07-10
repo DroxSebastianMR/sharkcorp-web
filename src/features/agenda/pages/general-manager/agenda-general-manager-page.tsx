@@ -1,12 +1,13 @@
 import {
-  CalendarPlus,
-  Check,
   ChevronLeft,
   ChevronRight,
   Clock3,
   MapPin,
   Plus,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+
+import { PATHS } from "@/app/router/constants/paths";
 
 const weekdays = ["LUN", "MAR", "MIE", "JUE", "VIE", "SAB", "DOM"];
 
@@ -48,8 +49,6 @@ const calendarDays = [
   { day: "26", blocked: true },
 ];
 
-const miniDays = ["25", "26", "27", "28", "29", "30", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
-
 const commitments = [
   {
     label: "HOY",
@@ -84,10 +83,10 @@ const commitments = [
 ];
 
 const categories = [
-  { label: "Estrategico", color: "bg-[#0757ff]", checked: true },
-  { label: "Interno", color: "bg-[#2e4a93]", checked: true },
-  { label: "Externo", color: "bg-slate-300", checked: true },
-  { label: "Urgente", color: "bg-red-400", checked: false },
+  { label: "Estrategico", color: "bg-[#0757ff]" },
+  { label: "Interno", color: "bg-[#2e4a93]" },
+  { label: "Externo", color: "bg-slate-300" },
+  { label: "Urgente", color: "bg-red-400" },
 ];
 
 const todayHighlights = [
@@ -128,10 +127,21 @@ const getImportanceClass = (importance: string) => {
 };
 
 export const AgendaGeneralManagerPage = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="min-h-[calc(100vh-5rem)] px-5 py-5 lg:px-12">
       <section className="flex flex-wrap items-start justify-between gap-4">
-        <div className="ml-auto flex items-center gap-3">
+        <div>
+          <h2 className="font-heading text-3xl font-extrabold text-[#083da8]">
+            Agenda ejecutiva
+          </h2>
+          <p className="mt-1 text-sm font-medium text-slate-500">
+            Gestiona reuniones, eventos y compromisos estrategicos del equipo.
+          </p>
+        </div>
+
+        <div className="flex items-center gap-3">
           <div className="flex rounded-xl bg-slate-200 p-1">
             <button
               className="h-9 cursor-pointer rounded-lg bg-white px-5 font-button text-xs font-bold text-[#0757ff] shadow-sm"
@@ -148,6 +158,7 @@ export const AgendaGeneralManagerPage = () => {
           </div>
           <button
             className="flex h-11 cursor-pointer items-center gap-2 rounded-xl bg-[#0757ff] px-6 font-button text-sm font-bold text-white shadow-[0_14px_28px_rgba(7,87,255,0.22)] transition hover:bg-[#064be0]"
+            onClick={() => navigate(PATHS.AGENDA.CREATE)}
             type="button"
           >
             <Plus className="h-4 w-4" />
@@ -156,7 +167,70 @@ export const AgendaGeneralManagerPage = () => {
         </div>
       </section>
 
-      <section className="agenda-layout mt-7">
+      <section className="mt-6 flex flex-wrap items-end gap-3 rounded-2xl bg-white p-4 shadow-[0_16px_32px_rgba(14,43,92,0.08)] ring-1 ring-slate-200/70">
+        <label className="min-w-[150px] flex-1">
+          <span className="font-heading text-xs font-extrabold uppercase tracking-[0.08em] text-slate-500">
+            Año
+          </span>
+          <select
+            className="mt-2 h-11 w-full cursor-pointer rounded-xl border border-transparent bg-slate-100 px-4 font-button text-sm font-semibold text-slate-700 outline-none transition focus:border-[#0757ff] focus:bg-white focus:ring-4 focus:ring-blue-100"
+            defaultValue="2023"
+          >
+            <option value="2026">2026</option>
+            <option value="2025">2025</option>
+            <option value="2024">2024</option>
+            <option value="2023">2023</option>
+          </select>
+        </label>
+
+        <label className="min-w-[170px] flex-1">
+          <span className="font-heading text-xs font-extrabold uppercase tracking-[0.08em] text-slate-500">
+            Mes
+          </span>
+          <select
+            className="mt-2 h-11 w-full cursor-pointer rounded-xl border border-transparent bg-slate-100 px-4 font-button text-sm font-semibold text-slate-700 outline-none transition focus:border-[#0757ff] focus:bg-white focus:ring-4 focus:ring-blue-100"
+            defaultValue="octubre"
+          >
+            <option value="enero">Enero</option>
+            <option value="febrero">Febrero</option>
+            <option value="marzo">Marzo</option>
+            <option value="abril">Abril</option>
+            <option value="mayo">Mayo</option>
+            <option value="junio">Junio</option>
+            <option value="julio">Julio</option>
+            <option value="agosto">Agosto</option>
+            <option value="septiembre">Septiembre</option>
+            <option value="octubre">Octubre</option>
+            <option value="noviembre">Noviembre</option>
+            <option value="diciembre">Diciembre</option>
+          </select>
+        </label>
+
+        <label className="min-w-[120px]">
+          <span className="font-heading text-xs font-extrabold uppercase tracking-[0.08em] text-slate-500">
+            Día
+          </span>
+          <select
+            className="mt-2 h-11 w-full cursor-pointer rounded-xl border border-transparent bg-slate-100 px-4 font-button text-sm font-semibold text-slate-700 outline-none transition focus:border-[#0757ff] focus:bg-white focus:ring-4 focus:ring-blue-100"
+            defaultValue="12"
+          >
+            {Array.from({ length: 31 }, (_, index) => String(index + 1)).map((day) => (
+              <option key={day} value={day}>
+                {day}
+              </option>
+            ))}
+          </select>
+        </label>
+
+        <button
+          className="h-11 cursor-pointer rounded-xl bg-[#0757ff] px-6 font-button text-sm font-bold text-white shadow-[0_14px_28px_rgba(7,87,255,0.18)] transition hover:bg-[#064be0]"
+          type="button"
+        >
+          Aplicar filtro
+        </button>
+      </section>
+
+      <section className="agenda-layout mt-6">
         <article className="rounded-2xl bg-white shadow-[0_16px_32px_rgba(14,43,92,0.08)] ring-1 ring-slate-200/70">
           <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-100 px-6 py-5">
             <div className="flex items-center gap-4">
@@ -179,20 +253,9 @@ export const AgendaGeneralManagerPage = () => {
               </button>
             </div>
 
-            <div className="flex gap-4 text-xs font-semibold text-slate-600">
-              <span className="flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full bg-[#0757ff]" />
-                Estrategico
-              </span>
-              <span className="flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full bg-[#2e4a93]" />
-                Interno
-              </span>
-              <span className="flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full bg-slate-300" />
-                Externo
-              </span>
-            </div>
+            <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-extrabold text-[#0757ff]">
+              Vista mensual
+            </span>
           </div>
 
           <div className="agenda-week-grid border-b border-slate-100 bg-slate-50 text-center text-[11px] font-extrabold text-slate-500">
@@ -244,6 +307,36 @@ export const AgendaGeneralManagerPage = () => {
               </div>
             ))}
           </div>
+
+          <div className="flex flex-wrap items-center justify-between gap-4 border-t border-slate-100 px-6 py-4">
+            <div>
+              <p className="font-heading text-xs font-extrabold uppercase tracking-[0.12em] text-slate-400">
+                Tipo de evento
+              </p>
+              <div className="mt-2 flex flex-wrap gap-4 text-xs font-semibold text-slate-600">
+                {categories.map((category) => (
+                  <span className="flex items-center gap-2" key={category.label}>
+                    <span className={`h-2.5 w-2.5 rounded-full ${category.color}`} />
+                    {category.label}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <p className="font-heading text-xs font-extrabold uppercase tracking-[0.12em] text-slate-400">
+                Importancia
+              </p>
+              <div className="mt-2 flex flex-wrap gap-4 text-xs font-semibold text-slate-600">
+                {importanceCategories.map((item) => (
+                  <span className="flex items-center gap-2" key={item.label}>
+                    <span className={`h-2.5 w-2.5 rounded-full ${item.color}`} />
+                    {item.label}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
         </article>
 
         <aside className="space-y-6">
@@ -264,49 +357,6 @@ export const AgendaGeneralManagerPage = () => {
                 >
                   {item.label}
                 </div>
-              ))}
-            </div>
-          </article>
-
-          <article className="rounded-2xl bg-white p-5 shadow-[0_16px_32px_rgba(14,43,92,0.08)] ring-1 ring-slate-200/70">
-            <div className="flex items-center justify-between">
-              <h3 className="font-heading text-sm font-extrabold text-slate-950">
-                Navegacion rapida
-              </h3>
-              <div className="flex gap-2">
-                <button
-                  aria-label="Anterior"
-                  className="grid h-8 w-8 cursor-pointer place-items-center rounded-lg text-slate-500 transition hover:bg-slate-100"
-                  type="button"
-                >
-                  <ChevronLeft className="h-4 w-4" />
-                </button>
-                <button
-                  aria-label="Siguiente"
-                  className="grid h-8 w-8 cursor-pointer place-items-center rounded-lg text-slate-500 transition hover:bg-slate-100"
-                  type="button"
-                >
-                  <ChevronRight className="h-4 w-4" />
-                </button>
-              </div>
-            </div>
-
-            <div className="agenda-mini-grid mt-4 text-center text-[10px] font-bold text-slate-400">
-              {["L", "M", "X", "J", "V", "S", "D"].map((day) => (
-                <span key={day}>{day}</span>
-              ))}
-            </div>
-            <div className="agenda-mini-grid mt-3 gap-y-2 text-center text-xs font-bold text-slate-600">
-              {miniDays.map((day) => (
-                <span
-                  className={[
-                    "mx-auto grid h-6 w-6 place-items-center rounded-full",
-                    day === "12" ? "bg-[#0757ff] text-white" : "",
-                  ].join(" ")}
-                  key={day}
-                >
-                  {day}
-                </span>
               ))}
             </div>
           </article>
@@ -364,65 +414,8 @@ export const AgendaGeneralManagerPage = () => {
               ))}
             </div>
           </article>
-
-          <article className="rounded-2xl bg-white p-5 shadow-[0_16px_32px_rgba(14,43,92,0.08)] ring-1 ring-slate-200/70">
-            <h3 className="font-heading text-sm font-extrabold text-slate-950">
-              Categorias
-            </h3>
-            <div className="mt-4 space-y-3">
-              {categories.map((category) => (
-                <button
-                  className="flex w-full cursor-pointer items-center justify-between rounded-xl px-2 py-1 text-left transition hover:bg-slate-50"
-                  key={category.label}
-                  type="button"
-                >
-                  <span className="flex items-center gap-3 text-sm font-semibold text-slate-600">
-                    <span
-                      className={[
-                        "grid h-4 w-4 place-items-center rounded border",
-                        category.checked
-                          ? `${category.color} border-transparent text-white`
-                          : "border-slate-300 bg-white",
-                      ].join(" ")}
-                    >
-                      {category.checked ? <Check className="h-3 w-3" /> : null}
-                    </span>
-                    {category.label}
-                  </span>
-                  <span className={`h-2 w-2 rounded-full ${category.color}`} />
-                </button>
-              ))}
-            </div>
-          </article>
-
-          <article className="rounded-2xl bg-white p-5 shadow-[0_16px_32px_rgba(14,43,92,0.08)] ring-1 ring-slate-200/70">
-            <h3 className="font-heading text-sm font-extrabold text-slate-950">
-              Importancia
-            </h3>
-            <div className="mt-4 space-y-3">
-              {importanceCategories.map((item) => (
-                <div
-                  className="flex items-center justify-between rounded-xl px-2 py-1"
-                  key={item.label}
-                >
-                  <span className="text-sm font-semibold text-slate-600">
-                    {item.label}
-                  </span>
-                  <span className={`h-2.5 w-2.5 rounded-full ${item.color}`} />
-                </div>
-              ))}
-            </div>
-          </article>
         </aside>
       </section>
-
-      <button
-        aria-label="Crear evento"
-        className="fixed bottom-7 right-7 z-20 grid h-14 w-14 cursor-pointer place-items-center rounded-2xl bg-[#0757ff] text-white shadow-[0_18px_34px_rgba(7,87,255,0.35)] transition hover:-translate-y-1 hover:bg-[#064be0]"
-        type="button"
-      >
-        <CalendarPlus className="h-6 w-6" />
-      </button>
     </div>
   );
 };

@@ -4,9 +4,7 @@ import { IMAGES } from "@/shared/constants/images";
 import { useState } from "react";
 
 export const DashboardSidebar = () => {
-  const [openSidebarGroup, setOpenSidebarGroup] = useState<string | null>(
-    "Gestion",
-  );
+  const [openSidebarGroup, setOpenSidebarGroup] = useState<string | null>(null);
 
   return (
     <aside className="fixed inset-y-0 left-0 z-30 hidden w-[280px] overflow-hidden bg-[#061b63] px-8 py-9 text-white lg:flex lg:flex-col">
