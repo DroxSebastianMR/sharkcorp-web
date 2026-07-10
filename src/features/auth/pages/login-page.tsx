@@ -1,8 +1,9 @@
+import { AuthPageContainer } from "@/features/auth/components/AuthPageContainer";
 import { LoginForm } from "@/features/auth/forms/login-form";
 
 export const LoginPage = () => {
   return (
-    <div className="mx-auto w-full max-w-[360px]">
+    <AuthPageContainer>
       <header className="mb-8 text-center">
         <h1 className="text-[36px] font-extrabold tracking-[-0.02em]">
           Bienvenido de nuevo
@@ -12,6 +13,6 @@ export const LoginPage = () => {
         </p>
       </header>
       <LoginForm />
-    </div>
+    </AuthPageContainer>
   );
 };
