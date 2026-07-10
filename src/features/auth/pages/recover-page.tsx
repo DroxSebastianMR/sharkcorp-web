@@ -1,21 +1,40 @@
-import { AuthFooter } from "@/features/auth/components/auth-footer";
+import { PATHS } from "@/app/router/constants/paths";
+import { AuthBackButton } from "@/features/auth/components/AuthBackButton";
+import { AuthHeader } from "@/features/auth/components/AuthHeader";
+import { AuthPageContainer } from "@/features/auth/components/AuthPageContainer";
 import { RecoveryForm } from "@/features/auth/forms/recovery-form";
+import { Mail } from "lucide-react";
 
 export const RecoverPage = () => {
   return (
-    <div className="mx-auto w-full max-w-[360px]">
-      <header className="mb-10 text-center">
-        <h1 className="text-[36px] font-bold tracking-[-0.02em]">
-          ¿Olvidaste tu contraseña?
-        </h1>
+    <AuthPageContainer>
+      <AuthBackButton
+        to={PATHS.AUTH.LOGIN}
+        text="Volver al inicio de sesión"
+        className="mb-16"
+      />
 
-        <p className="mt-3 text-sm text-muted-foreground">
-          Ingresa tu correo corporativo y te enviaremos un enlace para
-          restablecer tu contraseña.
-        </p>
-      </header>
+      <AuthHeader
+        className="mb-8"
+        icon={Mail}
+        title="¿Olvidaste tu contraseña?"
+        description={
+          <>
+            No te preocupes, sucede. Ingresa tu correo electrónico y te
+            <strong className="font-extrabold text-slate-950">
+              {" "}
+              enviaremos un enlace
+            </strong>{" "}
+            para restablecer tu
+            <strong className="font-extrabold text-slate-950">
+              {" "}
+              contraseña.
+            </strong>
+          </>
+        }
+      />
+
       <RecoveryForm />
-      <AuthFooter />
-    </div>
+    </AuthPageContainer>
   );
 };

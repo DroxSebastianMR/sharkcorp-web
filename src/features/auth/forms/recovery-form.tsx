@@ -1,58 +1,52 @@
-import { ArrowLeft, Mail } from "lucide-react";
+import { ArrowRight, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 
-import { Button } from "@/components/ui/button";
-
-import { AuthInput } from "@/features/auth/components/auth-input";
-
 import { PATHS } from "@/app/router/constants/paths";
+import { Button } from "@/components/ui/button";
+import { AuthInput } from "@/features/auth/components/auth-input";
+import { useRecoveryForm } from "@/features/auth/hooks/use-recovery-form";
 
 export const RecoveryForm = () => {
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    console.log("Enviar recuperación");
-  };
+  const { email, isSubmitting, errors, setEmail, clearError, handleSubmit } =
+    useRecoveryForm();
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} noValidate className="space-y-5">
       <AuthInput
-        id="email"
+        id="recover-email"
         label="Correo electrónico"
-        type="email"
+        type="text"
+        inputMode="email"
+        autoComplete="email"
         placeholder="nombre@sharkcorp.com"
         Icon={Mail}
+        value={email}
+        error={errors.email}
+        onChange={(event) => {
+          setEmail(event.target.value);
+          clearError("email");
+        }}
       />
-
       <Button
         type="submit"
-        className="
-          h-12
-          w-full
-          rounded-xl
-          text-sm
-          font-semibold
-        "
+        disabled={isSubmitting}
+        className="h-14 w-full rounded-[14px] bg-[#0757ff] text-base font-extrabold shadow-[0_18px_36px_rgba(7,87,255,0.22)] hover:bg-[#004be0]"
       >
-        Enviar enlace
+        <span>
+          {isSubmitting ? "Enviando..." : "Enviar enlace de recuperación"}
+        </span>
+        {!isSubmitting && <ArrowRight className="ml-2 h-5 w-5" />}
       </Button>
 
-      <Link
-        to={PATHS.AUTH.LOGIN}
-        className="
-          flex
-          items-center
-          justify-center
-          gap-2
-          text-sm
-          text-muted-foreground
-          transition-colors
-          hover:text-foreground
-        "
-      >
-        <ArrowLeft size={16} />
-        Volver al inicio de sesión
-      </Link>
+      <p className="text-center text-sm font-semibold text-slate-700">
+        ¿Recordaste tu contraseña?{" "}
+        <Link
+          to={PATHS.AUTH.LOGIN}
+          className="text-[#0052f5] transition-colors hover:text-[#003db8] hover:underline"
+        >
+          Iniciar sesión
+        </Link>
+      </p>
     </form>
   );
 };

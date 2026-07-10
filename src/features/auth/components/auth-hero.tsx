@@ -1,91 +1,42 @@
-import saludoImg from "@/assets/img/auth/saludo.png";
 import { AuthBrand } from "@/features/auth/components/auth-brand";
+import { HERO_DECORATIONS } from "@/features/auth/constants/auth-hero";
+import type { AuthHeroConfig } from "@/features/auth/types/auth-hero.types";
 
-export const AuthHero = () => {
+interface AuthHeroProps {
+  hero: AuthHeroConfig;
+}
+
+export const AuthHero = ({ hero }: AuthHeroProps) => {
   return (
-    <aside
-      className="
-        relative
-        hidden
-        overflow-hidden
-        lg:flex
-        flex-col
-        justify-between
-        px-8
-        py-10
-        xl:px-12
-        text-white
-        bg-[linear-gradient(180deg,#1652FF_0%,#0D3CC8_45%,#071B73_100%)]
-      "
-    >
-      {/* Efectos de fondo */}
-      <div className="absolute left-[-100px] top-[-100px] h-[300px] w-[300px] rounded-full bg-white/5 blur-3xl" />
-      <div className="absolute bottom-[-120px] right-[-120px] h-[350px] w-[350px] rounded-full bg-blue-300/5 blur-3xl" />
-
+    <aside className="relative hidden overflow-hidden bg-[#04195a] px-8 py-8 text-white lg:flex lg:flex-col xl:px-12">
+      <div className="absolute inset-0 bg-[linear-gradient(155deg,#1558f7_0%,#092985_34%,#04195a_72%,#031348_100%)]" />
+      <div className="absolute -left-28 -top-20 h-80 w-80 rounded-full bg-[#2f73ff]/35" />
+      <div className="absolute bottom-0 right-0 h-72 w-72 bg-[radial-gradient(circle_at_center,rgba(75,135,255,0.18),transparent_68%)]" />
+      <div className="absolute inset-x-0 top-0 h-40 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),transparent)]" />
       <div className="relative z-10">
         <AuthBrand />
       </div>
+      <div className="relative z-10 flex flex-1 items-center justify-center py-6 xl:py-8">
+        <div className="absolute h-80 w-80 rounded-full bg-white/10 blur-3xl xl:h-96 xl:w-96" />
 
-      {/* Imagen central */}
-      <div className="relative z-10 flex flex-1 items-center justify-center">
-        {/* Glow detrás de la imagen */}
-        <div
-          className="
-            absolute
-            h-[380px]
-            w-[380px]
-            rounded-full
-            bg-white/15
-            blur-[90px]
-          "
-        />
-
+        {HERO_DECORATIONS.map((classes) => (
+          <span key={classes} className={`absolute rounded-full ${classes}`} />
+        ))}
         <img
-          src={saludoImg}
-          alt="Saludo"
-          className="
-            relative
-            z-10
-            w-[320px]
-            xl:w-[420px]
-            2xl:w-[500px]
-            object-contain
-            select-none
-            drop-shadow-[0_20px_60px_rgba(255,255,255,0.15)]
-          "
+          src={hero.image}
+          alt={hero.alt}
           draggable={false}
+          className="relative z-10 w-[250px] animate-soft-bounce select-none object-contain drop-shadow-[0_26px_60px_rgba(0,17,88,0.28)] xl:w-[330px] 2xl:w-[390px]"
         />
       </div>
-
-      <div className="relative z-10 max-w-sm">
-        <h1
-          className="
-            text-3xl
-            font-extrabold
-            leading-tight
-            tracking-tight
-            xl:text-4xl
-          "
-        >
-          Tu espacio,
-          <br />
-          <span className="text-blue-200">toda tu comunidad.</span>
+      <div className="relative z-10 max-w-md pb-1">
+        <h1 className="whitespace-pre-line text-[34px] font-extrabold leading-[1.05] tracking-tight xl:text-[44px]">
+          {hero.title}
         </h1>
-
-        <p
-          className="
-            mt-5
-            max-w-md
-            text-sm
-            leading-relaxed
-            text-blue-100/90
-            md:text-base
-          "
-        >
-          Conéctate con tu equipo, accede a tus herramientas
-          <span className="hidden xl:inline"> </span>
-          <br className="xl:hidden" />y mantente al día con SharkCorp.
+        <p className="mt-5 max-w-sm text-sm leading-relaxed text-blue-50/85 md:text-base">
+          {hero.description}
         </p>
+        <p className="mt-8 text-xs text-blue-50/65">{hero.copyright}</p>
       </div>
     </aside>
   );

@@ -1,20 +1,25 @@
-import { Building2 } from "lucide-react";
+import logoImg from "@/assets/img/intranet/logo3.png";
 
 export const AuthBrand = () => {
   return (
     <div className="flex items-center gap-3">
       <div
         className="
-          flex h-9 w-9 items-center justify-center
+          flex h-10 w-10 items-center justify-center
           rounded-xl
-          bg-white/10
+          bg-white/65
           backdrop-blur-md
         "
       >
-        <Building2 className="h-4 w-4 text-white" />
+        <img
+          src={logoImg}
+          alt="SharkCorp"
+          className="h-8 w-8 object-contain"
+          draggable={false}
+        />
       </div>
 
-      <span className="text-sm font-semibold tracking-tight text-white">
+      <span className="font-button text-lg font-semibold tracking-tight text-white">
         SharkCorp Intranet
       </span>
     </div>
