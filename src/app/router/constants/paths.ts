@@ -20,9 +20,9 @@ export const PATHS = {
     JUSTIFICATIONS: "/attendance/justifications",
   },
 
-  AGENDA: {
-    HOME: "/agenda",
-    CREATE: "/agenda/new",
+  SCHEDULE: {
+    HOME: "/schedule",
+    CREATE: "/schedule/new",
   },
 
   ANNOUNCEMENTS: {

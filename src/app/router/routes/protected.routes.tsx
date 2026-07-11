@@ -9,8 +9,8 @@ import { AttendanceGeneralManagerPage } from '@/features/attendance/pages/genera
 import { AttendanceRecordsReportsPage } from '@/features/attendance/records-reports/pages/general-manager';
 import { AttendanceAbsencesPage } from '@/features/attendance/absences/pages/general-manager';
 import { AttendanceJustificationsPage } from '@/features/attendance/justifications/pages/general-manager';
-import { AgendaGeneralManagerPage } from '@/features/agenda/pages/general-manager';
-import { AgendaCreateEventPage } from '@/features/agenda/create/pages/general-manager';
+import { ScheduleGeneralManagerPage } from '@/features/schedule/pages/general-manager';
+import { ScheduleCreateEventPage } from '@/features/schedule/create/pages/general-manager';
 import { AnnouncementsGeneralManagerPage } from '@/features/announcements/pages/general-manager';
 import { AnnouncementCreatePage } from '@/features/announcements/create/pages/general-manager';
 import { TasksGeneralManagerPage } from '@/features/tasks/pages/general-manager';
@@ -62,12 +62,12 @@ export const protectedRoutes: RouteObject[] = [
             element: <AttendanceJustificationsPage />,
           },
           {
-            path: PATHS.AGENDA.HOME,
-            element: <AgendaGeneralManagerPage />,
+            path: PATHS.SCHEDULE.HOME,
+            element: <ScheduleGeneralManagerPage />,
           },
           {
-            path: PATHS.AGENDA.CREATE,
-            element: <AgendaCreateEventPage />,
+            path: PATHS.SCHEDULE.CREATE,
+            element: <ScheduleCreateEventPage />,
           },
           {
             path: PATHS.ANNOUNCEMENTS.HOME,

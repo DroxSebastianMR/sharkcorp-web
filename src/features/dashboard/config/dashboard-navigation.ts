@@ -53,7 +53,7 @@ export const dashboardNavigation: DashboardNavigationItem[] = [
   {
     label: "Agenda",
     icon: CalendarDays,
-    path: PATHS.AGENDA.HOME,
+    path: PATHS.SCHEDULE.HOME,
     visible: true,
   },
   {
