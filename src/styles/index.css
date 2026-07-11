@@ -185,21 +185,21 @@
   display: none;
 }
 
-.agenda-layout {
+.schedule-layout {
   display: grid;
   align-items: start;
   gap: 1.5rem;
 }
 
-.agenda-week-grid,
-.agenda-month-grid,
-.agenda-mini-grid {
+.schedule-week-grid,
+.schedule-month-grid,
+.schedule-mini-grid {
   display: grid;
   grid-template-columns: repeat(7, minmax(0, 1fr));
 }
 
 @media (min-width: 1280px) {
-  .agenda-layout {
+  .schedule-layout {
     grid-template-columns: minmax(0, 1fr) 360px;
   }
 }
